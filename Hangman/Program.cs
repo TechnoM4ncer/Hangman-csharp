@@ -48,19 +48,11 @@ namespace Hangman
 
                     }
 
-                    Console.WriteLine();
-                    Console.WriteLine("Correct!");
-                    Console.WriteLine("So far you have: " + "[{0}]", string.Join(", ", correctGuesses));
-                    Console.WriteLine("And " + chances + " more chances!");
-                    Console.WriteLine();
-                    continue;
+                    Correct(correctGuesses, chances);
 
                     if (correctCount >= answer.Length)
                     {
-                        Console.Clear();
-                        Console.WriteLine("Congratulations! You win!");
-                        Console.WriteLine("Press any key to play again");
-                        Console.ReadKey();
+                        Wingame();
                         break;
                     }
                     else
@@ -82,9 +74,7 @@ namespace Hangman
                     //Ends game when lives reach 0
                     if (chances == 0)
                     {
-                        Console.WriteLine("You have run out of guesses! The word was '" + answer + "'");
-                        Console.WriteLine("Press any key to play again");
-                        Console.ReadKey();
+                        Endgame(answer);
                         break;
                     }
                     else
@@ -93,6 +83,28 @@ namespace Hangman
                     }
                 }
             }
+        }
+
+        public static void Correct(string[] _correctGuesses, int _chances)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Correct!");
+            Console.WriteLine("So far you have: " + "[{0}]", string.Join(", ", _correctGuesses));
+            Console.WriteLine("And " + _chances + " more chances!");
+            Console.WriteLine();
+        }
+
+        public static void Wingame() {
+            Console.Clear();
+            Console.WriteLine("Congratulations! You win!");
+            Console.WriteLine("Press any key to close");
+            Console.ReadKey();
+        }
+
+        public static void Endgame(string _answer) {
+            Console.WriteLine("You have run out of guesses! The word was '" + _answer + "'");
+            Console.WriteLine("Press any key to close");
+            Console.ReadKey();
         }
     }
 }
