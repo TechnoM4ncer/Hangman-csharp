@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-
-namespace Hangman
+﻿namespace Hangman
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var startGame = new Game();
+            //Starts game
+            Game game = new Game();
         }
     }
 }

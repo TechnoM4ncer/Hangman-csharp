@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hangman
 {
     class Game
     {
+        //Variables
+        static Answers a = new Answers();
+        static string answer = a.Answer.ToLower();
+        string guess;
+        string[] correctGuesses = new string[answer.Length];
+        int chances = 6;
+        int correctCount = 0;
+
         public Game() {
-            //Variables
-            Answers a = new Answers();
-            string answer = a.Answer.ToLower();
-            string guess;
-            string[] correctGuesses = new string[answer.Length];
-            int chances = 6;
-            int correctCount = 0;
 
             //Introduction
             Console.Clear();
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine();
             Console.WriteLine("The word you are guessing has " + answer.Length + " letters!");
-
 
             while (correctCount < answer.Length && chances > 0)
             {
@@ -82,6 +79,7 @@ namespace Hangman
             }
         }
 
+        //Informs player of correct guess and adds to correctGuesses
         public static void Correct(string[] _correctGuesses, int _chances)
         {
             Console.WriteLine();
@@ -91,6 +89,7 @@ namespace Hangman
             Console.WriteLine();
         }
 
+        //Ends game when player guesses all correct letters
         public static void Wingame()
         {
             Console.Clear();
@@ -99,13 +98,12 @@ namespace Hangman
             Console.ReadKey();
         }
 
+        //Ends game when chances reach 0
         public static void Endgame(string _answer)
         {
             Console.WriteLine("You have run out of guesses! The word was '" + _answer + "'");
             Console.WriteLine("Press any key to close");
             Console.ReadKey();
         }
-
-        
     }
 }

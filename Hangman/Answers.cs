@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Hangman
@@ -16,12 +12,12 @@ namespace Hangman
         public static string answer = answersList[r.Next(answersList.Length)];
 
         //Getter
-        public string Answer {
-            get {
+        public string Answer
+        {
+            get
+            {
                 return answer;
             }
         }
-            
-
     }
 }
