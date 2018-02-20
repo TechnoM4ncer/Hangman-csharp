@@ -19,7 +19,7 @@ namespace Hangman
         }
 
         //Starts game
-        public static void Start()
+        private void Start()
         {
             a = new Answers();
             answer = a.Answer;
@@ -35,7 +35,7 @@ namespace Hangman
             Guess();
         }
 
-        public static void Guess()
+        private void Guess()
         {
             while (correctCount < answer.Length && chances > 0)
             {
@@ -48,7 +48,7 @@ namespace Hangman
             }
         }
 
-        public static void Check()
+        private void Check()
         {
             //Checks to see if guess is part of the answer, otherwise takes a life
             if (answer.IndexOf(guess, StringComparison.InvariantCultureIgnoreCase) >= 0 && !correctGuesses.Contains(guess))
@@ -90,7 +90,7 @@ namespace Hangman
         }
 
         //Informs player of correct guess and adds to correctGuesses
-        public static void Correct(string[] _correctGuesses, int _chances)
+        private void Correct(string[] _correctGuesses, int _chances)
         {
             Console.WriteLine();
             Console.WriteLine("Correct!");
@@ -100,7 +100,7 @@ namespace Hangman
         }
 
         //Ends game when player guesses all correct letters
-        public static void Wingame()
+        private void Wingame()
         {
             Console.Clear();
             Console.WriteLine("Congratulations! You win!");
@@ -116,7 +116,7 @@ namespace Hangman
         }
 
         //Ends game when chances reach 0
-        public static void Endgame(string _answer)
+        private void Endgame(string _answer)
         {
             Console.Clear();
             Console.WriteLine("You have run out of guesses! The word was '" + _answer + "'");
@@ -131,7 +131,7 @@ namespace Hangman
             }
         }
 
-        public static void Close()
+        private void Close()
         {
             Console.Clear();
             Console.WriteLine();
