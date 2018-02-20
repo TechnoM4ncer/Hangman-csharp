@@ -6,21 +6,37 @@ namespace Hangman
     class Game
     {
         //Variables
-        static Answers a = new Answers();
-        static string answer = a.Answer.ToLower();
-        string guess;
-        string[] correctGuesses = new string[answer.Length];
-        int chances = 6;
-        int correctCount = 0;
+        public static Answers a;
+        public static string answer;
+        public static string[] correctGuesses;
+        public static string guess;
+        public static int chances;
+        public static int correctCount;
 
+        //Constructor
         public Game() {
+            Start();
+        }
 
-            //Introduction
+        //Starts game
+        public static void Start()
+        {
+            a = new Answers();
+            answer = a.Answer;
+            chances = 6;
+            correctCount = 0;
+            correctGuesses = new string[answer.Length];
+
             Console.Clear();
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine();
             Console.WriteLine("The word you are guessing has " + answer.Length + " letters!");
 
+            Guess();
+        }
+
+        public static void Guess()
+        {
             while (correctCount < answer.Length && chances > 0)
             {
                 Console.WriteLine();
@@ -28,53 +44,47 @@ namespace Hangman
 
                 guess = Console.ReadLine();
 
-                //Checks to see if guess is part of the answer, otherwise takes a life
-                if (answer.Contains(guess) && !correctGuesses.Contains(guess))
+                Check();
+            }
+        }
+
+        public static void Check()
+        {
+            //Checks to see if guess is part of the answer, otherwise takes a life
+            if (answer.IndexOf(guess, StringComparison.InvariantCultureIgnoreCase) >= 0 && !correctGuesses.Contains(guess))
+            {
+
+                for (int i = 0; i < answer.Length; i++)
                 {
-
-                    for (int i = 0; i < answer.Length; i++)
+                    if (answer[i] == guess[0])
                     {
-                        if (answer[i] == guess[0])
-                        {
-                            correctGuesses[i] = answer[i].ToString();
-                            correctCount++;
-                        }
-
+                        correctGuesses[i] = answer[i].ToString();
+                        correctCount++;
                     }
 
-                    Correct(correctGuesses, chances);
-
-                    if (correctCount >= answer.Length)
-                    {
-                        Wingame();
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
                 }
-                else if (correctGuesses.Contains(guess))
-                {
-                    Console.WriteLine("You have already guessed this letter! Try again.");
-                    continue;
-                }
-                else
-                {
-                    chances--;
-                    Console.WriteLine();
-                    Console.WriteLine("Sorry that is incorrect! You have " + chances + " chances left");
 
-                    //Ends game when lives reach 0
-                    if (chances == 0)
-                    {
-                        Endgame(answer);
-                        break;
-                    }
-                    else
-                    {
-                        continue;
-                    }
+                Correct(correctGuesses, chances);
+
+                if (correctCount >= answer.Length)
+                {
+                    Wingame();
+                }
+            }
+            else if (correctGuesses.Contains(guess))
+            {
+                Console.WriteLine("You have already guessed this letter! Try again.");
+            }
+            else
+            {
+                chances--;
+                Console.WriteLine();
+                Console.WriteLine("Sorry that is incorrect! You have " + chances + " chances left");
+
+                //Ends game when lives reach 0
+                if (chances == 0)
+                {
+                    Endgame(answer);
                 }
             }
         }
@@ -94,15 +104,38 @@ namespace Hangman
         {
             Console.Clear();
             Console.WriteLine("Congratulations! You win!");
-            Console.WriteLine("Press any key to close");
-            Console.ReadKey();
+            Console.WriteLine("\n Press y to play again, or any other key to close");
+            if (Console.ReadKey().Key.ToString() == "Y")
+            {
+                Start();
+            }
+            else
+            {
+                Close();
+            }
         }
 
         //Ends game when chances reach 0
         public static void Endgame(string _answer)
         {
+            Console.Clear();
             Console.WriteLine("You have run out of guesses! The word was '" + _answer + "'");
-            Console.WriteLine("Press any key to close");
+            Console.WriteLine("Press y to play again, or any other key to close");
+            if (Console.ReadKey().Key.ToString() == "Y")
+            {
+                Start();
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+        public static void Close()
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("Thanks for playing! Press any key to close.");
             Console.ReadKey();
         }
     }
