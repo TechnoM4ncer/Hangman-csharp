@@ -6,12 +6,12 @@ namespace Hangman
     class Game
     {
         //Variables
-        public static Answers a;
-        public static string answer;
-        public static string[] correctGuesses;
-        public static string guess;
-        public static int chances;
-        public static int correctCount;
+        private Answers a;
+        private string answer;
+        private string[] correctGuesses;
+        private string guess;
+        private int chances;
+        private int correctCount;
 
         //Constructor
         public Game() {
