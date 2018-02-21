@@ -27,10 +27,10 @@ namespace Hangman
             correctCount = 0;
             correctGuesses = new string[answer.Length];
 
-            Console.Clear();
+        Console.Clear();
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine();
-            Console.WriteLine("The word you are guessing has " + answer.Length + " letters!");
+            Console.WriteLine($"The word you are guessing has " + "{0}" + " letters!", answer.Length);
 
             Guess();
         }
@@ -79,7 +79,7 @@ namespace Hangman
             {
                 chances--;
                 Console.WriteLine();
-                Console.WriteLine("Sorry that is incorrect! You have " + chances + " chances left");
+                Console.WriteLine("Sorry that is incorrect! You have " + "{0}" + " chances left", chances);
 
                 //Ends game when lives reach 0
                 if (chances == 0)
@@ -119,7 +119,7 @@ namespace Hangman
         private void Endgame(string _answer)
         {
             Console.Clear();
-            Console.WriteLine("You have run out of guesses! The word was '" + _answer + "'");
+            Console.WriteLine("You have run out of guesses! The word was '" + "{0}" + "'", _answer);
             Console.WriteLine("Press y to play again, or any other key to close");
             if (Console.ReadKey().Key.ToString() == "Y")
             {
@@ -134,7 +134,6 @@ namespace Hangman
         private void Close()
         {
             Console.Clear();
-            Console.WriteLine();
             Console.WriteLine("Thanks for playing! Press any key to close.");
             Console.ReadKey();
         }
