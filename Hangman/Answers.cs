@@ -6,16 +6,20 @@ namespace Hangman
     class Answers
     {
         //Variables
-        private static string[] answersList = File.ReadAllLines(@"answers.txt");
-        private static Random r = new Random();
-        int randomLineNumber = r.Next(0, answersList.Length - 1);
-        public static string answer = answersList[r.Next(answersList.Length)];
+        private static string[] answersList;
+        static Random r;
+        private int randomLineNumber;
+        private string answer;
 
         //Getter
         public string Answer
         {
             get
             {
+                answersList = File.ReadAllLines(@"answers.txt");
+                r = new Random();
+                randomLineNumber = r.Next(0, answersList.Length - 1);
+                answer = answersList[r.Next(answersList.Length)];
                 return answer;
             }
         }

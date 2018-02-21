@@ -27,7 +27,7 @@ namespace Hangman
             correctCount = 0;
             correctGuesses = new string[answer.Length];
 
-        Console.Clear();
+            Console.Clear();
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine();
             Console.WriteLine($"The word you are guessing has " + "{0}" + " letters!", answer.Length);
@@ -51,17 +51,16 @@ namespace Hangman
         private void Check()
         {
             //Checks to see if guess is part of the answer, otherwise takes a life
-            if (answer.IndexOf(guess, StringComparison.InvariantCultureIgnoreCase) >= 0 && !correctGuesses.Contains(guess))
+            if (answer.IndexOf(guess, StringComparison.OrdinalIgnoreCase) >= 0 && !correctGuesses.Contains(guess))
             {
 
                 for (int i = 0; i < answer.Length; i++)
                 {
-                    if (answer[i] == guess[0])
+                    if (guess != null && answer[i] == guess[0])
                     {
                         correctGuesses[i] = answer[i].ToString();
                         correctCount++;
                     }
-
                 }
 
                 Correct(correctGuesses, chances);
