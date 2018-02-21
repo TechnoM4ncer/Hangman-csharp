@@ -78,7 +78,7 @@ namespace Hangman
             {
                 chances--;
                 Console.WriteLine();
-                Console.WriteLine("Sorry that is incorrect! You have " + "{0}" + " chances left", chances);
+                Console.WriteLine($"Sorry that is incorrect! You have {chances} chances left");
 
                 //Ends game when lives reach 0
                 if (chances == 0)
@@ -118,7 +118,7 @@ namespace Hangman
         private void Endgame(string _answer)
         {
             Console.Clear();
-            Console.WriteLine("You have run out of guesses! The word was '" + "{0}" + "'", _answer);
+            Console.WriteLine($"You have run out of guesses! The word was '{_answer}'");
             Console.WriteLine("Press y to play again, or any other key to close");
             if (Console.ReadKey().Key.ToString() == "Y")
             {
