@@ -30,7 +30,7 @@ namespace Hangman
             Console.Clear();
             Console.WriteLine("Welcome to Hangman!");
             Console.WriteLine();
-            Console.WriteLine($"The word you are guessing has " + "{0}" + " letters!", answer.Length);
+            Console.WriteLine($"The word you are guessing has {answer.Length} letters!");
 
             Guess();
         }
@@ -93,7 +93,7 @@ namespace Hangman
         {
             Console.WriteLine();
             Console.WriteLine("Correct!");
-            Console.WriteLine("So far you have: " + "[{0}]", string.Join(", ", _correctGuesses));
+            Console.WriteLine($"So far you have: {string.Join(", ", _correctGuesses)}");
             Console.WriteLine("And " + _chances + " more chances!");
             Console.WriteLine();
         }
